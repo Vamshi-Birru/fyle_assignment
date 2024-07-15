@@ -1,0 +1,76 @@
+/* Basic styling */
+body {
+    top: 0px;
+    left: 0px;
+    /* width: 1920px;
+    height: 4821px; */
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+/* Contact Us Section */
+#contact {
+    text-align: center;
+    
+}
+.contact-award{
+    /* top: 243px;
+left: 376px;
+width: 251px;
+height: 30px; */
+text-align: left;
+font: normal normal 600 30px/110px Cormorant SC;
+letter-spacing: 0px;
+color: #FF3147;
+text-transform: uppercase;
+opacity: 1;
+}
+.contact-digital{
+    /* top: 312px;
+left: 376px;
+width: 614px;
+height: 140px; */
+text-align: left;
+font: normal normal bold 60px/80px Cormorant SC;
+letter-spacing: 0px;
+color: #000000;
+text-transform: uppercase;
+opacity: 1;
+}
+.contact-content{
+    text-align: left;
+font: normal normal normal 16px/30px Poppins;
+letter-spacing: 0px;
+color: #000000;
+opacity: 1;
+}
+.img-fluid{
+    top: 100px;
+left: 1058px;
+width: 487px;
+height: 737px;
+background: transparent url('./images/hero@2x.png') 0% 0% no-repeat padding-box;
+opacity: 1;
+}
+/* Slider Section */
+/* .carousel-item img {
+    height: 400px;
+    object-fit: cover;
+} */
+
+/* Projects Section */
+/* #projectImage {
+    width: 100%;
+    height: auto;
+} */
+
+/* .list-group-item:hover {
+    background-color: #f8f9fa;
+    cursor: pointer;
+} */
+
+/* Modal Styles */
+/* .modal-header {
+    background-color: #007bff;
+    color: white;
+}  */
