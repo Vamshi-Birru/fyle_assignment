@@ -90,28 +90,6 @@ const focus_fun = ({ id, focus, value = "" }) => {
 
 
 
-  // const scroll_images_container = document.getElementById("scroll-images");
-  // let totalWidthSizeOfImages = scroll_images_container.children.length * (scroll_images_container.children[0].clientWidth + 12);
-  // let widthOfImage = scroll_images_container.children[0].clientWidth + 12;
-  
-  // let totalFrame = totalWidthSizeOfImages / widthOfImage;
-  // let totalFramseOfElements = Math.ceil(totalFrame);
-  
-  // const scroll_indicator_container = document.getElementById("scroll-indicator");
-  
-  // Array.from({ length: totalFramseOfElements }, (_, i) => {
-  //   const li = document.createElement("li");
-  //   scroll_indicator_container.appendChild(li);
-  //   $(scroll_indicator_container.children[0]).addClass("active_service");
-  
-  //   $(li).on("click", function(e) {
-  //     $(".active_service").removeClass("active_service");
-  //     $(this).addClass("active_service");
-  
-  //     let left = (scroll_images_container.clientWidth - 10) * i;
-  //     scroll_images_container.scrollLeft = left;
-  //   });
-  // });
   
   // Form submission with Ajax
   $("#ajaxForm").submit(function(e) {
@@ -144,6 +122,6 @@ const focus_fun = ({ id, focus, value = "" }) => {
     if (name === "tnc") {
       form.tnc = e.checked ? "yes" : "no";
     }
-    // Add more handling for other input cases if needed
+   
   }
   
