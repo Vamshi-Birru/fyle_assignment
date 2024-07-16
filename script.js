@@ -1,45 +1,149 @@
-$(document).ready(function() {
-    // Contact Us Button Click
-    $('#contactBtn').on('click', function() {
-        $('#contactModal').modal('show');
+// Input focus
+const focus_fun = ({ id, focus, value = "" }) => {
+    const element = document.getElementById(id);
+    if (focus) {
+      element.style.position = "relative";
+    } else {
+      if (value.length === 0) {
+        element.style.position = "absolute";
+      }
+    }
+  };
+  
+  // Show contact us form
+  const show_contact_us_form_fun = () => {
+    $("#contact_us_form").removeClass("d-none");
+  };
+  
+  // Hide contact us form
+  const close_contact_us_form_fun = () => {
+    $("#contact_us_form").addClass("d-none");
+  };
+  
+  // Close popup
+  const close_popup = () => {
+    $("#popup").removeClass("d-grid").addClass("d-none");
+  };
+  
+  // Open popup
+  const open_popup = () => {
+    $("#popup").removeClass("d-none").addClass("d-grid");
+  };
+  
+  // Project changing buttons and functionality
+  const prjct_changing_btns = document.querySelectorAll(".project_changing_btns li");
+  const project_img = document.querySelectorAll(".project_section img");
+  
+  prjct_changing_btns.forEach((btn, i) => {
+    $(btn).on("click", function() {
+      $(".project_changing_btns li").removeClass("active_project");
+      $(".project_changing_btns li").children().removeClass("project_active_text").css("color", "");
+      $(".project_section img").removeClass("project_active_img");
+  
+      $(this).addClass("active_project");
+      $(this).children().css("color", "white");
+      $(project_img[i]).addClass("project_active_img");
     });
+  });
+  
+  // Service scroller and indicators
+  document.addEventListener("DOMContentLoaded", () => {
+    const scrollImagesContainer = document.getElementById("scroll-images");
+    const scrollIndicatorContainer = document.getElementById("scroll-indicator");
 
-    // Form Submission
-    $('#contactForm').on('submit', function(event) {
-        event.preventDefault();
-        $.ajax({
-            url: 'https://your-getform-endpoint.com', // Replace with your Getform endpoint
-            method: 'POST',
-            data: $(this).serialize(),
-            success: function(response) {
-                alert('Form submitted successfully!');
-                $('#contactModal').modal('hide');
-                $('#contactForm')[0].reset();
-            },
-            error: function(error) {
-                alert('Error submitting form. Please try again.');
-            }
+    // Get the total number of images
+    if (!scrollImagesContainer || !scrollIndicatorContainer) {
+      console.error("Required elements not found!");
+      return;
+  }
+    const totalImages = scrollImagesContainer.children.length;
+    //  console.log(totalImages);
+    // Create indicators
+    const indicatorsCount = Math.ceil(totalImages /16 );
+    for (let i = 0; i < indicatorsCount; i++) {
+        const indicator = document.createElement("li");
+        indicator.addEventListener("click", () => {
+            // Scroll to the corresponding image
+            scrollImagesContainer.scrollTo({
+                left: i * scrollImagesContainer.clientWidth,
+                behavior: "smooth"
+            });
+
+            // Set active class on the clicked indicator
+            document.querySelector(".active_service").classList.remove("active_service");
+            indicator.classList.add("active_service");
         });
-    });
 
-    // Slider Navigation
-    $('#slider').carousel({
-        interval: 2000
-    });
+        scrollIndicatorContainer.appendChild(indicator);
+    }
 
-    // Project Image Change on Click
-    $('#projectContent .list-group-item').on('click', function() {
-        var newImage = $(this).data('image');
-        $('#projectImage').attr('src', newImage);
-    });
+    // Set the first indicator as active
+    scrollIndicatorContainer.children[0].classList.add("active_service");
 
-    // Highlight on Hover
-    $('.list-group-item').hover(
-        function() {
-            $(this).addClass('list-group-item-dark');
-        },
-        function() {
-            $(this).removeClass('list-group-item-dark');
-        }
-    );
+    // Update the active indicator on scroll
+    scrollImagesContainer.addEventListener("scroll", () => {
+        const currentIndex = Math.round(scrollImagesContainer.scrollLeft / scrollImagesContainer.clientWidth);
+        document.querySelector(".active_service").classList.remove("active_service");
+        scrollIndicatorContainer.children[currentIndex].classList.add("active_service");
+    });
 });
+
+
+
+  // const scroll_images_container = document.getElementById("scroll-images");
+  // let totalWidthSizeOfImages = scroll_images_container.children.length * (scroll_images_container.children[0].clientWidth + 12);
+  // let widthOfImage = scroll_images_container.children[0].clientWidth + 12;
+  
+  // let totalFrame = totalWidthSizeOfImages / widthOfImage;
+  // let totalFramseOfElements = Math.ceil(totalFrame);
+  
+  // const scroll_indicator_container = document.getElementById("scroll-indicator");
+  
+  // Array.from({ length: totalFramseOfElements }, (_, i) => {
+  //   const li = document.createElement("li");
+  //   scroll_indicator_container.appendChild(li);
+  //   $(scroll_indicator_container.children[0]).addClass("active_service");
+  
+  //   $(li).on("click", function(e) {
+  //     $(".active_service").removeClass("active_service");
+  //     $(this).addClass("active_service");
+  
+  //     let left = (scroll_images_container.clientWidth - 10) * i;
+  //     scroll_images_container.scrollLeft = left;
+  //   });
+  // });
+  
+  // Form submission with Ajax
+  $("#ajaxForm").submit(function(e) {
+    e.preventDefault();
+    var action = $(this).attr("action");
+    $.ajax({
+      type: "POST",
+      url: action,
+      crossDomain: true,
+      data: new FormData(this),
+      dataType: "json",
+      processData: false,
+      contentType: false,
+      headers: {
+        Accept: "application/json"
+      }
+    })
+      .done(function() {
+        alert("The form was submitted successfully.");
+      })
+      .fail(function() {
+        alert("An error occurred! Please try again later.");
+      });
+  });
+  
+  // Input handler function
+  function input_handler(e) {
+    const { name, value } = e;
+  
+    if (name === "tnc") {
+      form.tnc = e.checked ? "yes" : "no";
+    }
+    // Add more handling for other input cases if needed
+  }
+  
